@@ -1,0 +1,241 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Hero {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  Title1    String
+  Title2    String
+  decrption String
+  image1    String
+  image2    String
+}
+
+model Features {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  Title           String
+  descrption      String
+  card1Title      String
+  card1Descrption String
+  card1Image      String
+  card2Title      String
+  card2Descrption String
+  card2Image      String
+  card3Title      String
+  card3Descrption String
+  card3Image      String
+}
+
+model News {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  card1Title       String
+  card1Date        String
+  card1Descrption  String
+  card1Image       String
+  card2Title       String
+  card2Date        String
+  card2Descrption  String
+  card2Image       String
+  card3Title       String
+  card3Date        String
+  card3Descrption  String
+  card3Image       String
+}
+
+model Brands {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  images String[]
+}
+
+model AboutUs {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  items       String[]
+  image       String
+}
+
+model FeaturedServices {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  image String
+}
+
+model OurSkills {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  image       String
+}
+
+model Video {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String?
+  description String?
+  video       String?
+}
+
+model OurServices {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  card1Title       String
+  card1Description String
+  card1Image       String
+  card2Title       String
+  card2Description String
+  card2Image       String
+  card3Title       String
+  card3Description String
+  card3Image       String
+  card4Title       String
+  card4Description String
+  card4Image       String
+  card5Title       String
+  card5Description String
+  card5Image       String
+  card6Title       String
+  card6Description String
+  card6Image       String
+}
+
+model Steps {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  step1Title       String
+  step1Description String
+  step1Image       String?
+  step2Title       String
+  step2Description String
+  step2Image       String?
+  step3Title       String
+  step3Description String
+  step3Image       String?
+  step4Title       String
+  step4Description String
+  step4Image       String?
+  step5Title       String?
+  step5Description String?
+  step5Image       String?
+  step6Title       String?
+  step6Description String?
+  step6Image       String?
+}
+
+model GetInTouch {
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  locationTitle      String
+  locationDescription String
+  phoneTitle         String
+  phoneDescription   String
+  emailTitle         String
+  emailDescription   String
+}
+
+model Contact {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  badge       String @default("CONTACT US")
+  title       String @default("Want to know more about us?")
+  description String @default("Lollamco laboris nisi ut aliquip ex ea commodo consequat.")
+  buttonText  String @default("Contact Us")
+  buttonLink  String @default("#contact-form")
+}
+
+model Testmonials {
+  id         String            @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  description String
+  cards      TestmonialCard[]
+}
+
+model TestmonialCard {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  comment       String
+  name          String
+  profilePic    String
+  role          String
+  testmonialId  String      @db.ObjectId
+  testmonial    Testmonials @relation(fields: [testmonialId], references: [id], onDelete: Cascade)
+}
+
+model Skills {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  skills      String[]
+}
+
+model WhoWeServe {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  points      String[]
+}
+
+model WhyChooseVan {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  points      String[]
+}
+
+model OurTrackRecord {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  Title1       String
+  Title2       String
+  descrption   String
+  C1title      String
+  C1descrption String
+  C2title      String
+  C2descrption String
+  C3title      String
+  C3descrption String
+}
+
+model Portfolio {
+  id    String          @id @default(auto()) @map("_id") @db.ObjectId
+  title String          @default("")
+  items PortfolioItem[]
+}
+
+model OurClients {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  images String[]
+}
+
+model ClientsSection {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  badgeLabel  String @default("Trusted Partners")
+  title       String @default("Proud to Work With")
+  description String @default("Leading organizations trust us with their most critical operations and transformational initiatives")
+}
+
+type PortfolioItem {
+  title   String
+  fileUrl String
+}
+
+model Projects {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  Title        String
+  Descrption   String
+  C1Title      String
+  C1Descrption String
+  C1Points     String[]
+  C1Images     String[]
+  C2Title      String
+  C2Descrption String
+  C2Points     String[]
+  C2Images     String[]
+  C3Title      String
+  C3Descrption String
+  C3Points     String[]
+  C3Images     String[]
+  C4Title      String
+  C4Descrption String
+  C4Points     String[]
+  C4Images     String[]
+}
